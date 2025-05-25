@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Update</title>
+</head>
+<body>
+
+    <form method="POST" th:action="@{/contacts/update}">
+        <input type="hidden" name="id" th:value="${contact.id}">
+        
+        <label>Name:</label>
+        <input type="text" name="name" th:value="${contact.name}"><br>
+        
+        <label>Email:</label>
+        <input type="text" name="email" th:value="${contact.email}"><br>
+        
+        <label>Birth Date (E.g.: dd/mm/yyyy):</label>
+        <input type="text" name="birthDate" th:value="${#temporals.format(contact.birthDate, 'dd/MM/yyyy')}"><br>
+        
+        <button type="submit">Update</button>
+    </form>
+
+</body>
+</html>

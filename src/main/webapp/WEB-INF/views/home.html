@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Contact SpreadSheet</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+    <h1>Contact SpreadSheet</h1>
+	<br>
+
+	<!-- Mensagem de erro, se houver -->
+	<p th:if="${errorMessage != null}" th:text="${errorMessage}"></p>
+
+	<!-- Tabela de contatos -->
+	<table border="1px">
+    	<tr>
+        	<th>Name</th>
+        	<th>Email</th>
+        	<th>Birth Day</th>
+        	<th>Actions</th>
+    	</tr>
+
+    	<!-- Iteração sobre a lista de contatos -->
+    	<tr th:each="contact : ${contacts}">
+        	<td th:text="${contact.name}">Name</td>
+        	<td th:text="${contact.email}">Email</td>
+        	<td th:text="${#temporals.format(contact.birthDate, 'dd/MM/yyyy')}">Birth Date</td>
+        	<td>
+            	<a th:href="@{/contacts/update(id=${contact.id})}">Update</a> |
+            	<a th:href="@{/contacts/delete(id=${contact.id})}">Delete</a>
+        	</td>
+    	</tr>
+	</table>
+
+	<!-- Link para inserção -->
+	<a th:href="@{/contacts/insert}">Insert new contact...</a>
+
+</body>
+</html>
